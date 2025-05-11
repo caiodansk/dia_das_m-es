@@ -1,0 +1,104 @@
+/* Estilo global */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #fff0f5, #ffe4e1);
+  color: #5c1a1b;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Conteúdo principal */
+.content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  animation: fadeInText 2s ease;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Galeria de imagens */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+figure {
+  width: 250px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  animation: fadeInCard 1s ease-in-out;
+}
+
+figure:hover {
+  transform: scale(1.05);
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+figcaption {
+  padding: 15px;
+  background-color: #ffe0e9;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #4b1c1c;
+  border-top: 1px solid #f5c6cb;
+}
+
+/* Animações */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  figure {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}

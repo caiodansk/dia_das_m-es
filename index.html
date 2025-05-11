@@ -5,45 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homenagem Dia das Mães</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    #surprise-btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #ff6b81;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    #surprise-btn:hover {
+      background-color: #ff4d6d;
+    }
+
+    /* Estilo para corações flutuantes */
+    .heart {
+      position: fixed;
+      font-size: 2rem;
+      color: red;
+      animation: floatUp 5s ease-in-out infinite;
+      z-index: 9999;
+      opacity: 1;
+      animation-timing-function: ease-in-out;
+    }
+
+    /* Animação para os corações subindo */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-300px) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) rotate(90deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="content">
     <h1>🌷 Feliz Dia das Mães! 🌷</h1>
-    <p>Hoje é o dia de celebrar aquelas que com amor incondicional, dedicação e força nos guiam todos os dias. Esta é uma homenagem especial a todas as mães da minha vida.</p>
+    <p>Hoje é o dia de celebrar aquelas que com amor incondicional, dedicação e força nos guiam todos os dias.</p>
 
-    <section class="gallery">
+    <!-- Botão de Surpresa -->
+    <button id="surprise-btn">Clique aqui para abrir sua surpresa 🎁</button>
+
+    <!-- Conteúdo escondido -->
+    <section id="surpresa" class="gallery hidden">
       <figure>
         <img src="/eu.jpg" alt="Minha foto">
         <figcaption>Com gratidão, deixo esta mensagem.</figcaption>
       </figure>
-
       <figure>
         <img src="/mae.jpg" alt="Minha mãe">
         <figcaption>Para minha mãe, meu amor eterno. Obrigado por tudo.</figcaption>
       </figure>
-
       <figure>
         <img src="/marlene.jpg" alt="Marlene">
         <figcaption>Marlene, símbolo de carinho e sabedoria.</figcaption>
       </figure>
-
       <figure>
         <img src="/teresinha.jpg" alt="Teresinha">
         <figcaption>Teresinha, com seu coração generoso e acolhedor.</figcaption>
       </figure>
-
       <figure>
         <img src="/vo.jpg" alt="Minha avó">
         <figcaption>Minha avó, a raiz da nossa história. Te amamos.</figcaption>
       </figure>
-
       <figure>
         <img src="/JESUS.jpeg" alt="Jesus">
         <figcaption>Que Jesus abençoe todas as mães do mundo com saúde, paz e amor.</figcaption>
       </figure>
+      <p>Feliz Dia das Mães! Que o amor que vocês espalham retorne em dobro todos os dias. 💐</p>
     </section>
 
-    <p>Feliz Dia das Mães! Que o amor que vocês espalham retorne em dobro todos os dias. 💐</p>
+    <!-- Música escondida até clicar -->
+    <audio id="musica" loop>
+      <source src="/1 Milhão de vezes _ Música dia das mães - Rafinha Acústico.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
   </main>
+
+  <!-- Corações flutuantes -->
+  <div id="hearts-container"></div>
+
+  <script>
+    const btn = document.getElementById("surprise-btn");
+    const section = document.getElementById("surpresa");
+    const musica = document.getElementById("musica");
+    const heartsContainer = document.getElementById("hearts-container");
+
+    btn.addEventListener("click", () => {
+      section.classList.remove("hidden");
+      btn.style.display = "none";
+
+      musica.play().catch(err => {
+        alert("Clique para ativar o som da música!");
+        console.error("Erro ao iniciar áudio:", err);
+      });
+
+      // Função para criar corações flutuantes
+      createHearts();
+    });
+
+    // Função para gerar corações flutuantes em loop
+    function createHearts() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+
+      // Coloca os corações em posições aleatórias na parte inferior da tela
+      heart.style.left = `${Math.random() * 100}vw`; // Posição aleatória no eixo X
+      heart.style.animationDuration = `${Math.random() * 5 + 5}s`; // A duração da animação será aleatória
+
+      heartsContainer.appendChild(heart);
+
+      // Remove o coração após a animação terminar
+      setTimeout(() => {
+        heart.remove();
+      }, 10000); // Remove depois de 10 segundos
+
+      // Chama a função novamente a cada 3 segundos para continuar criando corações em loop
+      setTimeout(createHearts, 3000);
+    }
+  </script>
 </body>
 </html>
